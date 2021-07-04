@@ -1,7 +1,10 @@
 import React, {createContext, useReducer} from 'react';
 
+import { getCurrentUserFromStorage } from './helpers';
+
 const initialState = {
-  appName: 'MVP App Starter'
+  appName: 'MVP App Starter',
+  currentUser: getCurrentUserFromStorage(),
 };
 
 const store = createContext(initialState);
@@ -12,6 +15,9 @@ const StateProvider = ( { children } ) => {
     switch(action.type) {
       case 'updateAppName': {
         return {...state, appName: action.value};
+      }
+      case 'updateCurrentUser': {
+        return {...state, currentUser: action.value};
       }
       default:
         throw new Error();

@@ -4,8 +4,16 @@ import HomePageRoute from '../library/routes/HomePage/HomePage.route';
 import LoginRoute from '../library/routes/Login/Login.route';
 
 // If your application locks functionality behind a user login
-// the following array can be implemented to ensure only authenticated
+// the following arrays can be implemented to ensure only authenticated
 // users have access to the right areas
+const baseRoutes = [
+  {
+    path: "/",
+    exact: true,
+    render: () => <HomePageRoute />
+  }
+];
+
 const adminRoutes = [
   {
     path: "/admin",
@@ -14,12 +22,15 @@ const adminRoutes = [
   },
 ];
 
-const unAuthenticatedRoutes = [
+const userRoutes = [
   {
-    path: "/",
+    path: "/profile",
     exact: true,
-    render: () => <HomePageRoute />
+    render: () => (<p>User profile</p>)
   },
+];
+
+const unAuthenticatedRoutes = [
   {
     path: "/login",
     exact: true,
@@ -33,6 +44,8 @@ const unAuthenticatedRoutes = [
 ];
 
 export {
+  baseRoutes,
+  userRoutes,
   adminRoutes,
   unAuthenticatedRoutes,
 };
