@@ -1,0 +1,22 @@
+.app-header {
+  background-color: #f8f8f8;
+  
+  div.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .main-nav a {
+      margin-right: 8px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
