@@ -11,7 +11,6 @@ function App() {
 
   const getUserRoutes = () => {
     let availableRoutes = [...baseRoutes];
-    console.log(state.currentUser);
 
     if (state.currentUser.roles.includes('ROLE_USER')) {
       availableRoutes = [...availableRoutes, ...userRoutes];
