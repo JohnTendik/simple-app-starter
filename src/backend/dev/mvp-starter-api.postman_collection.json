@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "99aab5c2-839e-4056-b317-4c9e3e9c52fe",
+		"name": "mvp-starter-api",
+		"description": "Testing schema for the MVP starter app backend functions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "/api/auth/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@hotmail.com\",\n    \"username\": \"user\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mvp-url}}/api/auth/signup",
+							"host": [
+								"{{mvp-url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						},
+						"description": "The api request for signing up a user"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/auth/signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"user\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mvp-url}}/api/auth/signin",
+							"host": [
+								"{{mvp-url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						},
+						"description": "The api request for signing up a user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authTest",
+			"item": [
+				{
+					"name": "/api/test/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "tests the endpoint for all users"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/test/user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mvp-url}}/api/test/user",
+							"host": [
+								"{{mvp-url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"user"
+							]
+						},
+						"description": "tests the endpoint for all users"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/test/admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mvp-url}}/api/test/admin",
+							"host": [
+								"{{mvp-url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"admin"
+							]
+						},
+						"description": "tests the endpoint for all users"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/test/mod",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mvp-url}}/api/test/mod",
+							"host": [
+								"{{mvp-url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"mod"
+							]
+						},
+						"description": "tests the endpoint for all users"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "mvp-url",
+			"value": "http://localhost:3000"
+		}
+	]
+}
