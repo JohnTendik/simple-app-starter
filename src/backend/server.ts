@@ -1,6 +1,7 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express from "express";
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import DatabaseManager from './app/database-manager';
 
 const app = express();
 
@@ -27,5 +28,4 @@ app.listen(PORT, () => {
 });
 
 // Initialize Database Manager
-const DatabaseManager = require('./app/database-manager');
 DatabaseManager.connect();
