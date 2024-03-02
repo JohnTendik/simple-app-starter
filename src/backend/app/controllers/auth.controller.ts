@@ -1,3 +1,4 @@
+import type {Request, Response} from 'express';
 import { sign } from "jsonwebtoken";
 import { hashSync, compareSync } from "bcryptjs";
 import  User  from '../models/user/user.model';
@@ -6,7 +7,7 @@ import  Role  from '../models/user/role.model';
 // Auth config
 import authConfig from "../config/auth.config";
 
-export function signup(req: any, res: any) {
+export function signup(req: Request<{ username: string, password: string, email: string }>, res: Response) {
   const user = new User({
     email: req.body.email,
     username: req.body.username,
@@ -28,7 +29,7 @@ export function signup(req: any, res: any) {
   });
 }
 
-export function signin(req: any, res: any) {
+export function signin(req: Request, res: Response) {
   User.findOne({
     username: req.body.username
   })

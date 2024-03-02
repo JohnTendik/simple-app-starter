@@ -1,3 +1,3 @@
 export default {
-  secret: "reputation-gme-wild-flowers-moon-base"
+  secret: "YOUR_OWN_SECRET"
 };

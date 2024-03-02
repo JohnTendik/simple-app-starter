@@ -1,9 +1,9 @@
+import type {Request, Response, NextFunction} from 'express';
 import databaseManager from "../database-manager";
 import User from "../models/user/user.model"
-
 const ROLES = databaseManager.userRoles;
 
-const checkDuplicateUsernameOrEmail = (req: any, res: any, next: any) => {
+const checkDuplicateUsernameOrEmail = (req: Request<any, any, {username: string, email: string}>, res: Response, next: NextFunction) => {
   // Username
   User.findOne({
     username: req.body.username
@@ -30,7 +30,7 @@ const checkDuplicateUsernameOrEmail = (req: any, res: any, next: any) => {
   });
 };
 
-const checkRolesExisted = (req: any, res: any, next: any) => {
+const checkRolesExisted = (req: Request<any, any, {roles: string[]}>, res: Response, next: NextFunction) => {
   if (req.body.roles) {
     for (let i = 0; i < req.body.roles.length; i++) {
       if (!ROLES.includes(req.body.roles[i])) {
@@ -45,7 +45,7 @@ const checkRolesExisted = (req: any, res: any, next: any) => {
   next();
 };
 
-const ensureUserExists = (req: any, res: any, next: any) => {
+const ensureUserExists = (req: Request<any, any, {userId: string}>, res: Response, next: NextFunction) => {
   User.findOne({
     _id: req.body.userId
   }).exec().then((user) => {

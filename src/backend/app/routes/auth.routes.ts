@@ -1,8 +1,9 @@
+import type {Request, Response, NextFunction, Express} from 'express';
 import { verifySignUp } from "../middlewares";
 import * as controller from "../controllers/auth.controller";
 
-module.exports = function(app: any) {
-  app.use(function(req: any, res: any, next: any) {
+export default function(app: Express) {
+  app.use(function(req: Request, res: Response, next: NextFunction) {
     res.header(
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"

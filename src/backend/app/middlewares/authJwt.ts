@@ -1,3 +1,5 @@
+import type {Request, Response, NextFunction} from 'express';
+
 import jwt from "jsonwebtoken";
 import config from "../config/auth.config";
 
@@ -6,8 +8,8 @@ import DatabaseManager from '../database-manager';
 const User = DatabaseManager.models.User;
 const Role = DatabaseManager.models.Role;
 
-const verifyToken = (req: any, res: any, next: any) => {
-  let token = req.headers["x-access-token"];
+const verifyToken = (req: Request<any, any, {userId: string}>, res: Response, next: NextFunction) => {
+  let token = req.headers["x-access-token"] as string;
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -17,13 +19,14 @@ const verifyToken = (req: any, res: any, next: any) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized!" });
     }
-    req.userId = decoded.id;
+
+    req.body.userId = decoded.id;
     next();
   });
 };
 
-const isAdmin = (req: any, res: any, next: any) => {
-  User.findById(req.userId).exec().then((user: any) => {
+const isAdmin = (req: Request<any, any, {userId: string}>, res: Response, next: NextFunction) => {
+  User.findById(req.body.userId).exec().then((user: any) => {
     Role.find(
       {
         _id: { $in: user.roles }
@@ -48,8 +51,8 @@ const isAdmin = (req: any, res: any, next: any) => {
   });
 };
 
-const isModerator = (req: any, res: any, next: any) => {
-  User.findById(req.userId).exec().then((user: any) => {
+const isModerator = (req: Request<any, any, {userId: string}>, res: Response, next: NextFunction) => {
+  User.findById(req.body.userId).exec().then((user: any) => {
     Role.find(
       {
         _id: { $in: user.roles }
