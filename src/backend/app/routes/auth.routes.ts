@@ -1,9 +1,10 @@
-import type {Request, Response, NextFunction, Express} from 'express';
+import type {Response, NextFunction, Express} from 'express';
 import { verifySignUp } from "../middlewares";
 import * as controller from "../controllers/auth.controller";
+import { TypedRequestBody } from '../sharedTypes';
 
 export default function(app: Express) {
-  app.use(function(req: Request, res: Response, next: NextFunction) {
+  app.use(function(req: TypedRequestBody<{}>, res: Response, next: NextFunction) {
     res.header(
       "Access-Control-Allow-Headers",
       "x-access-token, Origin, Content-Type, Accept"

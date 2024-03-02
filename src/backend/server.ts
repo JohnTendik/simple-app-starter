@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import DatabaseManager from './app/database-manager';
+import AuthRoutes from './app/routes/auth.routes';
+import UserRoutes from './app/routes/user.routes';
 
 const app = express();
 
@@ -18,8 +20,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+AuthRoutes(app);
+UserRoutes(app);
 
 // Set port, listen for requests
 const PORT = process.env.PORT || 80;

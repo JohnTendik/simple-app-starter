@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import config from "../config/auth.config";
 
 import DatabaseManager from '../database-manager';
+import { TypedRequestBody } from '../sharedTypes';
 
 const User = DatabaseManager.models.User;
 const Role = DatabaseManager.models.Role;
@@ -25,7 +26,7 @@ const verifyToken = (req: Request<any, any, {userId: string}>, res: Response, ne
   });
 };
 
-const isAdmin = (req: Request<any, any, {userId: string}>, res: Response, next: NextFunction) => {
+const isAdmin = (req: TypedRequestBody<{userId: string}>, res: Response, next: NextFunction) => {
   User.findById(req.body.userId).exec().then((user: any) => {
     Role.find(
       {
@@ -51,7 +52,7 @@ const isAdmin = (req: Request<any, any, {userId: string}>, res: Response, next: 
   });
 };
 
-const isModerator = (req: Request<any, any, {userId: string}>, res: Response, next: NextFunction) => {
+const isModerator = (req: TypedRequestBody<{userId: string}>, res: Response, next: NextFunction) => {
   User.findById(req.body.userId).exec().then((user: any) => {
     Role.find(
       {

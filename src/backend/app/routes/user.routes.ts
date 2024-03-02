@@ -2,7 +2,7 @@ import type {Request, Response, NextFunction, Express} from 'express';
 import { authJwt } from "../middlewares";
 import * as controller from "../controllers/user.controller";
 
-module.exports = function(app: Express) {
+export default function(app: Express) {
   app.use(function(req: Request, res: Response, next: NextFunction) {
     res.header(
       "Access-Control-Allow-Headers",
